@@ -9,18 +9,115 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-script: var(--font-script-vibes);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark backdrop with diagonal blue light streaks, like the PDF hero.
+   Applied once to the whole body. Every layer is a repeating gradient at
+   the same angle, so the pattern is perfectly uniform over the entire
+   page — no visible seams or bright patches at any height. */
+/* All layers share one 560px period so the StreaksAligner script can phase-
+   shift each section's background and make the mirrored streaks of adjacent
+   sections meet exactly at every seam (the chevron effect). */
+.bg-streaks {
+  background-color: #020509;
+  background-image:
+    /* fine bright accents, kept away from the tile origin so no section
+       shows a dense cluster near its top corner */
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 130px,
+      rgba(56, 189, 248, 0.18) 138px,
+      transparent 146px,
+      transparent 372px,
+      rgba(125, 211, 252, 0.12) 380px,
+      transparent 388px,
+      transparent 560px
+    ),
+    /* medium blue bands, broad and widely spaced */
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 190px,
+      rgba(30, 64, 175, 0.22) 225px,
+      rgba(59, 130, 246, 0.07) 258px,
+      transparent 292px,
+      transparent 450px,
+      rgba(30, 64, 175, 0.16) 490px,
+      transparent 528px,
+      transparent 560px
+    ),
+    /* broad soft bands adding depth between the streaks */
+    repeating-linear-gradient(
+      115deg,
+      rgba(4, 15, 34, 0.85) 0px,
+      rgba(9, 30, 64, 0.45) 140px,
+      rgba(4, 15, 34, 0.85) 280px,
+      rgba(8, 26, 56, 0.55) 420px,
+      rgba(4, 15, 34, 0.85) 560px
+    );
+}
+
+/* Same pattern mirrored (115deg -> 65deg), so the streaks visibly run in the
+   opposite diagonal direction. Alternating sections between .bg-streaks and
+   .bg-streaks-flip makes each seam a mirrored join instead of a visible
+   restart of the same tile. (A plain 180° rotation looks identical for a
+   striped pattern — mirroring is what flips the direction.) */
+.bg-streaks-flip {
+  background-color: #020509;
+  background-image:
+    repeating-linear-gradient(
+      65deg,
+      transparent 0px,
+      transparent 130px,
+      rgba(56, 189, 248, 0.18) 138px,
+      transparent 146px,
+      transparent 372px,
+      rgba(125, 211, 252, 0.12) 380px,
+      transparent 388px,
+      transparent 560px
+    ),
+    repeating-linear-gradient(
+      65deg,
+      transparent 0px,
+      transparent 190px,
+      rgba(30, 64, 175, 0.22) 225px,
+      rgba(59, 130, 246, 0.07) 258px,
+      transparent 292px,
+      transparent 450px,
+      rgba(30, 64, 175, 0.16) 490px,
+      transparent 528px,
+      transparent 560px
+    ),
+    repeating-linear-gradient(
+      65deg,
+      rgba(4, 15, 34, 0.85) 0px,
+      rgba(9, 30, 64, 0.45) 140px,
+      rgba(4, 15, 34, 0.85) 280px,
+      rgba(8, 26, 56, 0.55) 420px,
+      rgba(4, 15, 34, 0.85) 560px
+    );
+}
+
+/* Softer variant used behind light sections' headers if needed */
+.text-gradient-blue {
+  background-image: linear-gradient(100deg, #7dd3fc, #3b82f6 55%, #4338ca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.splash-blob {
+  border-radius: 58% 42% 46% 54% / 55% 48% 52% 45%;
+  background-image: linear-gradient(105deg, #5eead4 0%, #38bdf8 45%, #6366f1 100%);
 }
