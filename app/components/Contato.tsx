@@ -1,3 +1,6 @@
+import Image from "next/image";
+import projetoWord from "@/public/Projeto_Site_DeehZigner_projeto.webp";
+
 const WHATSAPP_URL = "https://wa.me/5511954103916";
 
 const items = [
@@ -54,7 +57,11 @@ export function Contato() {
           </p>
           <h2 className="mt-3 text-4xl font-bold text-white sm:text-5xl">
             Vamos conversar sobre seu{" "}
-            <span className="font-script text-gradient-blue">projeto?</span>
+            <Image
+              src={projetoWord}
+              alt="projeto?"
+              className="inline-block h-[1.1em] w-auto align-[-0.3em]"
+            />
           </h2>
           <p className="mt-4 text-zinc-400">
             Tire suas dúvidas ou comece seu projeto agora mesmo.

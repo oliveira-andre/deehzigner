@@ -1,29 +1,18 @@
+import Image from "next/image";
+import rosto from "@/public/Projeto_Site_DeehZigner_rosto.webp";
+
 export function Sobre() {
   return (
     <section id="sobre" className="bg-streaks scroll-mt-16 py-32 text-white">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
         {/* Portrait */}
-        <div className="relative mx-auto w-fit">
-          <span
-            aria-hidden
-            className="absolute left-1/2 top-6 z-0 -translate-x-1/2 whitespace-nowrap text-7xl font-black tracking-tight text-gradient-blue opacity-80 sm:text-8xl"
-          >
-            ANDERSON
-          </span>
-          <div className="relative z-10 mt-16 h-64 w-64 rounded-full bg-gradient-to-b from-sky-200 via-blue-400 to-indigo-700 p-1.5 sm:h-80 sm:w-80">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/anderson.jpg"
-              alt="Anderson Nogueira Silva, designer gráfico"
-              className="h-full w-full rounded-full object-cover"
-            />
-          </div>
-          <span
-            aria-hidden
-            className="absolute -right-4 bottom-4 z-20 text-6xl font-black text-sky-400"
-          >
-            *
-          </span>
+        <div className="relative mx-auto w-full max-w-xl">
+          <Image
+            src={rosto}
+            alt="Anderson Nogueira Silva, designer gráfico"
+            sizes="(min-width: 1024px) 576px, 100vw"
+            className="h-auto w-full"
+          />
         </div>
 
         {/* Bio */}

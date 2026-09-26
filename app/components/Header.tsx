@@ -1,4 +1,5 @@
-import { Wordmark } from "./Logo";
+import Image from "next/image";
+import logoSmall from "@/public/Projeto_Site_DeehZigner_logo_.webp";
 
 const links = [
   { href: "#atuacao", label: "ATUAÇÃO" },
@@ -12,8 +13,13 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-black/85 backdrop-blur border-b border-white/10">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        <a href="#home" className="pb-2">
-          <Wordmark gid="hdr" className="text-2xl" />
+        <a href="#home">
+          <Image
+            src={logoSmall}
+            alt="DeehZigner — início"
+            preload
+            className="h-11 w-auto"
+          />
         </a>
         <nav className="hidden items-center gap-7 md:flex">
           {links.map((l) => (

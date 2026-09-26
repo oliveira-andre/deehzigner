@@ -9,12 +9,22 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-script: var(--font-script-vibes);
+  --font-display: var(--font-geometric);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Brand display face for all headings; body copy stays in Geist for
+   readability at small sizes. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
 }
 
 html {
@@ -107,14 +117,6 @@ html {
       rgba(8, 26, 56, 0.55) 420px,
       rgba(4, 15, 34, 0.85) 560px
     );
-}
-
-/* Softer variant used behind light sections' headers if needed */
-.text-gradient-blue {
-  background-image: linear-gradient(100deg, #7dd3fc, #3b82f6 55%, #4338ca);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .splash-blob {
