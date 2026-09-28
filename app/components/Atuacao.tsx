@@ -1,74 +1,41 @@
-const icon = {
-  stroke: "#18181b",
-  strokeWidth: 2,
-  fill: "none",
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-
-function MonitorIcon() {
-  return (
-    <svg viewBox="0 0 48 48" className="h-12 w-12" {...icon}>
-      <rect x="6" y="8" width="36" height="24" rx="2" />
-      <path d="M24 32v6M16 40h16" />
-      <path d="M12 26l7-7 5 5 6-8 6 10" />
-      <circle cx="15" cy="14" r="1.6" fill="#18181b" />
-    </svg>
-  );
-}
-
-function TabletPenIcon() {
-  return (
-    <svg viewBox="0 0 48 48" className="h-12 w-12" {...icon}>
-      <rect x="6" y="12" width="36" height="24" rx="3" />
-      <path d="M11 17v2M11 22v2M11 27v2" />
-      <path d="M18 30c3-4 8-6 14-6" />
-      <path d="M36 10l4 4-12 12-5 1 1-5 12-12z" />
-    </svg>
-  );
-}
-
-function HandPencilIcon() {
-  return (
-    <svg viewBox="0 0 48 48" className="h-12 w-12" {...icon}>
-      <path d="M18 40h12v-8" />
-      <path d="M16 26c0-3 2-5 4-5h8c2 0 4 2 4 5v6H16v-6z" />
-      <path d="M22 21v-8l3-5 3 5v8" />
-      <path d="M22 13h6" />
-    </svg>
-  );
-}
-
-function EaselIcon() {
-  return (
-    <svg viewBox="0 0 48 48" className="h-12 w-12" {...icon}>
-      <rect x="10" y="10" width="28" height="20" rx="2" />
-      <path d="M24 6v4M24 30v4M14 42l6-12M34 42l-6-12" />
-      <path d="M14 26l6-6 4 4 5-7 5 9" />
-    </svg>
-  );
-}
+import Image from "next/image";
+import icon1 from "@/public/Projeto_Site_DeehZigner_1.webp";
+import icon2 from "@/public/Projeto_Site_DeehZigner_2.webp";
+import icon3 from "@/public/Projeto_Site_DeehZigner_3.webp";
+import icon4 from "@/public/Projeto_Site_DeehZigner_4.webp";
+import icon5 from "@/public/Projeto_Site_DeehZigner_5.webp";
+import icon6 from "@/public/Projeto_Site_DeehZigner_6.webp";
 
 const services = [
   {
-    icon: <MonitorIcon />,
-    title: "Social Media & Artes Digitais",
-    text: "Criatividade que para o feed: posts, banners e campanhas com identidade forte, pensadas para engajar e converter o seu público.",
-  },
-  {
-    icon: <TabletPenIcon />,
+    icon: icon1,
     title: "Ilustração & Arte Digital",
     text: "Inspiração traçada à mão: ilustrações, mascotes e artes exclusivas que dão personalidade única à sua comunicação.",
   },
   {
-    icon: <HandPencilIcon />,
-    title: "Identidade Visual & Branding",
-    text: "Inovação com estratégia: logotipos, paletas e manuais de marca construídos com precisão para tornar seu negócio inesquecível.",
+    icon: icon2,
+    title: "Social Media & Artes Digitais",
+    text: "Criatividade que para o feed: posts, banners e campanhas com identidade forte, pensadas para engajar e converter o seu público.",
   },
   {
-    icon: <EaselIcon />,
+    icon: icon3,
+    title: "Identidade Visual & Branding",
+    text: "Inovação com estratégia: logotipos, paletas e manuais de marca construídos para tornar seu negócio inesquecível.",
+  },
+  {
+    icon: icon4,
     title: "Comunicação Visual & Impressos",
-    text: "Paixão em cada detalhe: cartões, flyers, rótulos, embalagens e fechamento de arquivo impecável para a produção gráfica.",
+    text: "Paixão em cada detalhe: cartões, flyers, banners, fachadas e materiais de papelaria que causam impacto.",
+  },
+  {
+    icon: icon5,
+    title: "Arte-Final & Vetorização",
+    text: "Precisão técnica: vetorização, ajustes de cor e fechamento de arquivos prontos para a gráfica, sem surpresas na produção.",
+  },
+  {
+    icon: icon6,
+    title: "Rótulos & Embalagens",
+    text: "Estratégia na prateleira: rótulos e embalagens que destacam seu produto e conquistam o consumidor à primeira vista.",
   },
 ];
 
@@ -83,7 +50,7 @@ const adjectives = [
 
 export function Atuacao() {
   return (
-    <section id="atuacao" className="bg-streaks-flip scroll-mt-16 py-32">
+    <section id="atuacao" className="bg-fundo bg-fundo-cima-espelhada scroll-mt-16 py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <p className="text-sm font-bold tracking-widest text-sky-400">
           — ATUAÇÃO
@@ -113,8 +80,12 @@ export function Atuacao() {
               key={s.title}
               className="flex gap-5 rounded-2xl bg-zinc-950 p-7 shadow-xl shadow-black/50 ring-1 ring-white/10 transition-transform hover:-translate-y-1"
             >
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-zinc-100">
-                {s.icon}
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-sky-400/10 ring-1 ring-sky-400/25">
+                <Image
+                  src={s.icon}
+                  alt=""
+                  className="h-12 w-12 object-contain"
+                />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white">{s.title}</h3>

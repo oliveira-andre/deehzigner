@@ -49,7 +49,7 @@ const items = [
 
 export function Contato() {
   return (
-    <section id="contato" className="bg-streaks scroll-mt-16 py-32">
+    <section id="contato" className="scroll-mt-16 py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-2">
         <div>
           <p className="text-sm font-bold tracking-widest text-sky-400">

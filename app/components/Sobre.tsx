@@ -3,14 +3,14 @@ import rosto from "@/public/Projeto_Site_DeehZigner_rosto.webp";
 
 export function Sobre() {
   return (
-    <section id="sobre" className="bg-streaks scroll-mt-16 py-32 text-white">
+    <section id="sobre" className="bg-fundo bg-fundo-baixo scroll-mt-16 py-32 text-white">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
         {/* Portrait */}
         <div className="relative mx-auto w-full max-w-xl">
           <Image
             src={rosto}
             alt="Anderson Nogueira Silva, designer gráfico"
-            sizes="(min-width: 1024px) 576px, 100vw"
+            sizes="(min-width: 1440px) min(40vw, 1008px), (min-width: 1024px) 576px, 100vw"
             className="h-auto w-full"
           />
         </div>

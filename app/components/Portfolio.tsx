@@ -43,7 +43,7 @@ const projects = [
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="bg-streaks scroll-mt-16 py-32">
+    <section id="portfolio" className="bg-fundo bg-fundo-baixo-espelhada scroll-mt-16 py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <p className="text-sm font-bold tracking-widest text-sky-400">
           — PORTIFÓLIO

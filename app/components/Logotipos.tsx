@@ -2,7 +2,7 @@ import { LogoCarousel } from "./LogoCarousel";
 
 export function Logotipos() {
   return (
-    <section id="logotipos" className="bg-streaks-flip scroll-mt-16 py-32">
+    <section id="logotipos" className="bg-fundo bg-fundo-cima scroll-mt-16 py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <h2 className="text-4xl font-bold uppercase tracking-tight text-white">
           Logotipos

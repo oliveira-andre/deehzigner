@@ -7,12 +7,10 @@ import { Sobre } from "./components/Sobre";
 import { Faq } from "./components/Faq";
 import { Contato } from "./components/Contato";
 import { Footer } from "./components/Footer";
-import { StreaksAligner } from "./components/StreaksAligner";
 
 export default function Home() {
   return (
     <>
-      <StreaksAligner />
       <Header />
       <main className="flex-1">
         <Hero />
@@ -21,9 +19,13 @@ export default function Home() {
         <Logotipos />
         <Sobre />
         <Faq />
-        <Contato />
       </main>
-      <Footer />
+      {/* Contato and the footer share one background so the page ends on the
+          bottom streak band without a seam above the footer. */}
+      <div className="bg-fundo bg-fundo-baixo">
+        <Contato />
+        <Footer />
+      </div>
     </>
   );
 }

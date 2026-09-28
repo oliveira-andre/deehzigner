@@ -74,7 +74,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 export function Faq() {
   return (
-    <section id="duvidas" className="bg-streaks-flip scroll-mt-16 py-32">
+    <section id="duvidas" className="bg-fundo bg-fundo-cima-espelhada scroll-mt-16 py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <p className="text-sm font-bold tracking-widest text-sky-400">
           — DÚVIDAS

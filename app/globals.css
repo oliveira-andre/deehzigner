@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
+/* Page base is pure black to match the streak artwork. Sections end on
+   fractional pixels, so the browser blends each seam row with whatever is
+   behind the sections — this must be black or a gray line shows at seams. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -29,97 +32,83 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Every size on the page is in rem, so growing the root font scales the
+     whole layout. At 1440×900 and below it stays 16px (the design size);
+     above that it grows with the screen, so big monitors show the same
+     composition larger instead of a small column in a sea of black.
+     - 100vw / 90 keeps the 1440px proportions as the width grows.
+     - 100vh / 56 stops it growing past the point where the hero (about
+       56rem tall) still fits the first screen, e.g. on 16:9 monitors.
+     - Capped at 28px. Media-query breakpoints are unaffected: rem in media
+       queries always uses the browser default, not this value. */
+  font-size: clamp(16px, min(100vw / 90, 100vh / 56), 28px);
 }
 
-/* Dark backdrop with diagonal blue light streaks, like the PDF hero.
-   Applied once to the whole body. Every layer is a repeating gradient at
-   the same angle, so the pattern is perfectly uniform over the entire
-   page — no visible seams or bright patches at any height. */
-/* All layers share one 560px period so the StreaksAligner script can phase-
-   shift each section's background and make the mirrored streaks of adjacent
-   sections meet exactly at every seam (the chevron effect). */
-.bg-streaks {
-  background-color: #020509;
-  background-image:
-    /* fine bright accents, kept away from the tile origin so no section
-       shows a dense cluster near its top corner */
-    repeating-linear-gradient(
-      115deg,
-      transparent 0px,
-      transparent 130px,
-      rgba(56, 189, 248, 0.18) 138px,
-      transparent 146px,
-      transparent 372px,
-      rgba(125, 211, 252, 0.12) 380px,
-      transparent 388px,
-      transparent 560px
-    ),
-    /* medium blue bands, broad and widely spaced */
-    repeating-linear-gradient(
-      115deg,
-      transparent 0px,
-      transparent 190px,
-      rgba(30, 64, 175, 0.22) 225px,
-      rgba(59, 130, 246, 0.07) 258px,
-      transparent 292px,
-      transparent 450px,
-      rgba(30, 64, 175, 0.16) 490px,
-      transparent 528px,
-      transparent 560px
-    ),
-    /* broad soft bands adding depth between the streaks */
-    repeating-linear-gradient(
-      115deg,
-      rgba(4, 15, 34, 0.85) 0px,
-      rgba(9, 30, 64, 0.45) 140px,
-      rgba(4, 15, 34, 0.85) 280px,
-      rgba(8, 26, 56, 0.55) 420px,
-      rgba(4, 15, 34, 0.85) 560px
-    );
+/* Section backgrounds built from the PDF streak artwork
+   (Projeto_Site_DeehZigner_fundo_completo / _fundo_cima / _baixo).
+   public/fundos/ holds the streak bands cropped from those files, with their
+   3px artboard frame trimmed. Each band fades to pure black, which matches the
+   black page behind the sections, so only the band edges ever touch a seam.
+
+   Seams are either black-to-black (invisible) or a band meeting its vertical
+   mirror image (-espelhada): the edge rows are pixel-identical, so the streaks
+   continue across the seam as a clean chevron instead of a visible cut.
+
+   Every band is sized the same way (full width, never narrower than 1100px,
+   centered) so mirrored pairs line up exactly at any viewport width. */
+.bg-fundo {
+  background-repeat: no-repeat;
+  background-size: max(100%, 1100px) auto;
+  /* Section edges often land on fractional pixels, and the seam row is then
+     only partly covered by each section. Three rules keep that row from
+     darkening into a hairline across the chevron:
+     1. No background-color here: the page behind is already black. A section
+        color would be blended in at partial coverage under the band image,
+        and two stacked partial layers darken the row.
+     2. The transparent 1px bottom border extends every band 1px under the
+        next section (backgrounds paint under the border), so the upper band
+        always covers the seam row completely.
+     3. Bands are pushed --fundo-sangria past the seam so the image's own outer
+        row never lands on it. Positions are measured from the padding box,
+        whose bottom is the seam, so both halves of a mirrored pair overshoot
+        by the same 3px and the chevron stays exactly symmetric. */
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+  --fundo-sangria: 3px;
+  --fundo-topo: center calc(-1 * var(--fundo-sangria));
+  --fundo-base: center calc(100% + var(--fundo-sangria));
 }
 
-/* Same pattern mirrored (115deg -> 65deg), so the streaks visibly run in the
-   opposite diagonal direction. Alternating sections between .bg-streaks and
-   .bg-streaks-flip makes each seam a mirrored join instead of a visible
-   restart of the same tile. (A plain 180° rotation looks identical for a
-   striped pattern — mirroring is what flips the direction.) */
-.bg-streaks-flip {
-  background-color: #020509;
-  background-image:
-    repeating-linear-gradient(
-      65deg,
-      transparent 0px,
-      transparent 130px,
-      rgba(56, 189, 248, 0.18) 138px,
-      transparent 146px,
-      transparent 372px,
-      rgba(125, 211, 252, 0.12) 380px,
-      transparent 388px,
-      transparent 560px
-    ),
-    repeating-linear-gradient(
-      65deg,
-      transparent 0px,
-      transparent 190px,
-      rgba(30, 64, 175, 0.22) 225px,
-      rgba(59, 130, 246, 0.07) 258px,
-      transparent 292px,
-      transparent 450px,
-      rgba(30, 64, 175, 0.16) 490px,
-      transparent 528px,
-      transparent 560px
-    ),
-    repeating-linear-gradient(
-      65deg,
-      rgba(4, 15, 34, 0.85) 0px,
-      rgba(9, 30, 64, 0.45) 140px,
-      rgba(4, 15, 34, 0.85) 280px,
-      rgba(8, 26, 56, 0.55) 420px,
-      rgba(4, 15, 34, 0.85) 560px
-    );
+/* fundo_completo: streaks at top and bottom. The bands are opaque, so if the
+   section were shorter than both of them the top band's black half would cover
+   the bottom band's streaks with a hard edge. Each band is 559/2400 of the
+   rendered width, so the section is kept at least two bands tall. */
+.bg-fundo-completo {
+  background-image: url("/fundos/faixa-cima.webp"), url("/fundos/faixa-baixo.webp");
+  background-position: var(--fundo-topo), var(--fundo-base);
+  min-height: calc(max(100vw, 1100px) * 1118 / 2400);
 }
 
-.splash-blob {
-  border-radius: 58% 42% 46% 54% / 55% 48% 52% 45%;
-  background-image: linear-gradient(105deg, #5eead4 0%, #38bdf8 45%, #6366f1 100%);
+/* fundo_cima: streaks at top */
+.bg-fundo-cima {
+  background-image: url("/fundos/faixa-cima.webp");
+  background-position: var(--fundo-topo);
+}
+
+/* baixo: streaks at bottom */
+.bg-fundo-baixo {
+  background-image: url("/fundos/faixa-baixo.webp");
+  background-position: var(--fundo-base);
+}
+
+/* Top band mirroring the .bg-fundo-baixo/-completo band directly above */
+.bg-fundo-cima-espelhada {
+  background-image: url("/fundos/faixa-cima-espelhada.webp");
+  background-position: var(--fundo-topo);
+}
+
+/* Bottom band mirroring the .bg-fundo-cima band directly below */
+.bg-fundo-baixo-espelhada {
+  background-image: url("/fundos/faixa-baixo-espelhada.webp");
+  background-position: var(--fundo-base);
 }

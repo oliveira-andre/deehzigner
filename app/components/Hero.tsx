@@ -1,5 +1,6 @@
 import Image from "next/image";
 import logo from "@/public/Projeto_Site_DeehZigner_logo.webp";
+import crieSuaArte from "@/public/Projeto_Site_DeehZigner_crie_sua_arte.webp";
 import iconCorel from "@/public/Projeto_Site_DeehZigner_icone_corel.webp";
 import iconPs from "@/public/Projeto_Site_DeehZigner_icone_ps.webp";
 import iconAi from "@/public/Projeto_Site_DeehZigner_icone_ai.webp";
@@ -19,7 +20,7 @@ const tools = [
 
 export function Hero() {
   return (
-    <section id="home" className="bg-streaks pt-16 text-white">
+    <section id="home" className="bg-fundo bg-fundo-completo pt-16 text-white">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-10 pt-14 sm:px-6 lg:grid-cols-2 lg:gap-6">
         {/* Big brand lockup */}
         <div className="flex flex-col items-center justify-center">
@@ -27,20 +28,20 @@ export function Hero() {
             src={logo}
             alt="DeehZigner"
             preload
-            sizes="(min-width: 1024px) 480px, (min-width: 640px) 384px, 288px"
+            sizes="(min-width: 1440px) min(34vw, 840px), (min-width: 1024px) 480px, (min-width: 640px) 384px, 288px"
             className="h-auto w-72 sm:w-96 lg:w-[30rem]"
           />
         </div>
 
         {/* Copy */}
         <div className="flex flex-col justify-center gap-6 pt-10 lg:pt-0">
-          <div className="splash-blob w-fit -rotate-2 px-10 py-6 text-center shadow-2xl shadow-sky-900/50">
-            <p className="font-display text-2xl leading-tight tracking-wide text-white drop-shadow sm:text-3xl">
-              CRIE SUA
-              <br />
-              <span className="text-4xl sm:text-5xl">ARTE !!!</span>
-            </p>
-          </div>
+          <Image
+            src={crieSuaArte}
+            alt="Crie sua arte!!!"
+            preload
+            sizes="(min-width: 1440px) min(29vw, 728px), (min-width: 640px) 416px, 320px"
+            className="h-auto w-80 sm:w-[26rem]"
+          />
 
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
             Transformando <span className="text-sky-300">sua ideia</span> em
